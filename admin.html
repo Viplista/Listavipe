@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Lista de Convidados</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.2/xlsx.full.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="https://cdn.awsli.com.br/2648/2648208/arquivos/vip.png" alt="Logo do Evento" class="logo">
+            <h1 class="event-name">Painel do Admin</h1>
+        </div>
+    </header>
+
+    <main>
+        <h2>Gerenciar Eventos</h2>
+        <button onclick="createEvent()">Criar Novo Evento</button>
+
+        <div id="eventListAdmin">
+            <!-- Lista de eventos será carregada aqui -->
+        </div>
+    </main>
+
+    <script src="admin.js"></script>
+</body>
+</html>
