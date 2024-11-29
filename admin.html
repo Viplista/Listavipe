@@ -1,29 +1,35 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Lista de Convidados</title>
+    <title>Painel de Administração</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.2/xlsx.full.min.js"></script>
 </head>
 <body>
     <header>
-        <div class="header-container">
-            <img src="https://cdn.awsli.com.br/2648/2648208/arquivos/vip.png" alt="Logo do Evento" class="logo">
-            <h1 class="event-name">Painel do Admin</h1>
-        </div>
+        <img src="https://cdn.awsli.com.br/2648/2648208/arquivos/vip.png" alt="Logo" id="logo">
+        <h1>Painel de Administração</h1>
     </header>
 
-    <main>
-        <h2>Gerenciar Eventos</h2>
-        <button onclick="createEvent()">Criar Novo Evento</button>
+    <div class="admin-container">
+        <h2>Lista de Convidados</h2>
+        <table id="tabela-convidados">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Contato</th>
+                </tr>
+            </thead>
+            <tbody id="lista-convidados">
+                <!-- Os convidados serão listados aqui -->
+            </tbody>
+        </table>
 
-        <div id="eventListAdmin">
-            <!-- Lista de eventos será carregada aqui -->
-        </div>
-    </main>
+        <button id="baixar-lista">Baixar Lista (Excel)</button>
+    </div>
 
-    <script src="admin.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,58 +1,51 @@
-window.onload = function() {
-    loadEvents();
-}
+// Função para cadastrar convidado
+document.getElementById("form-convidado").addEventListener("submit", function (event) {
+    event.preventDefault();
 
-// Carregar todos os eventos
-function loadEvents() {
-    const events = getEvents();
-    const eventListContainer = document.getElementById("eventListContainer");
-    eventListContainer.innerHTML = "";  // Limpa a lista de eventos
-
-    events.forEach(event => {
-        const button = document.createElement("button");
-        button.textContent = event.name;
-        button.onclick = () => showEventForm(event.id);
-        eventListContainer.appendChild(button);
-    });
-}
-
-// Mostrar o formulário de inscrição para o evento selecionado
-function showEventForm(eventId) {
-    document.getElementById("guestForm").style.display = "flex";
-    document.getElementById("guestForm").onsubmit = function(event) {
-        event.preventDefault();
-        addGuest(eventId);
-    }
-}
-
-// Adicionar um convidado ao evento selecionado
-function addGuest(eventId) {
-    const name = document.getElementById("name").value;
+    const nome = document.getElementById("nome").value;
     const cpf = document.getElementById("cpf").value;
-    const contact = document.getElementById("contact").value;
+    const contato = document.getElementById("contato").value;
 
-    if (name && contact) {
-        const events = getEvents();
-        const event = events.find(event => event.id === eventId);
+    // Verificar se o nome e contato foram preenchidos
+    if (nome && contato) {
+        const novoConvidado = { nome, cpf, contato };
 
-        event.guests.push({ name, cpf, contact });
+        // Recuperar eventos do localStorage ou inicializar um novo array
+        let convidados = JSON.parse(localStorage.getItem("convidados")) || [];
+        convidados.push(novoConvidado);
+        localStorage.setItem("convidados", JSON.stringify(convidados));
 
-        // Atualizar o evento no localStorage
-        saveEvents(events);
-        
-        document.getElementById("guestForm").reset();
-        document.getElementById("guestForm").style.display = "none";
-        alert("Convidado adicionado com sucesso!");
+        alert("Convidado cadastrado com sucesso!");
+        // Limpar o formulário após o envio
+        document.getElementById("form-convidado").reset();
+    } else {
+        alert("Por favor, preencha todos os campos obrigatórios.");
     }
-}
+});
 
-// Recuperar todos os eventos do localStorage
-function getEvents() {
-    const events = localStorage.getItem("events");
-    return events ? JSON.parse(events) : [];
-}
+// Função para exibir a lista de convidados na página de administração
+window.onload = function () {
+    const listaConvidados = JSON.parse(localStorage.getItem("convidados")) || [];
+    const tbody = document.getElementById("lista-convidados");
 
-// Salvar os eventos no localStorage
-function saveEvents(events) {
-    localStorage.setItem("events", JSON.stringify(events));
-}
+    // Preencher a tabela com os dados
+    listaConvidados.forEach(convidado => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${convidado.nome}</td>
+            <td>${convidado.cpf || "Não informado"}</td>
+            <td>${convidado.contato}</td>
+        `;
+        tbody.appendChild(tr);
+    };
+
+    // Função para baixar a lista em Excel
+    document.getElementById("baixar-lista").addEventListener("click", function () {
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.json_to_sheet(listaConvidados);
+        XLSX.utils.book_append_sheet(wb, ws, "Convidados");
+
+        // Baixar o arquivo Excel
+        XLSX.writeFile(wb, "lista_convidados.xlsx");
+    });
+};

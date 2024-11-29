@@ -1,88 +1,93 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     background-color: #f4f4f4;
     color: #333;
 }
 
 header {
-    background-color: #54565A;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-header .logo {
-    width: 100px;
-    height: 100px;
-    margin-right: 15px;
+#logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
 }
 
-header .event-name {
-    color: #fff;
-    font-size: 18px;
-    margin: 0;
+h1 {
+    font-size: 24px;
+    color: #333;
 }
 
-main {
+.container {
+    max-width: 500px;
+    margin: 20px auto;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-#eventListContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#eventListContainer button {
-    padding: 10px;
-    background-color: #5e8dc9;
-    border: none;
-    color: white;
-    border-radius: 4px;
-    margin: 10px;
-    cursor: pointer;
-}
-
-#eventListContainer button:hover {
-    background-color: #3e6c9f;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 300px;
-}
-
-form .form-group {
+input {
     width: 100%;
-    margin-bottom: 15px;
-}
-
-form input {
     padding: 10px;
-    margin-bottom: 10px;
+    margin: 10px 0;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
+    border-radius: 5px;
 }
 
-form button {
-    padding: 10px 20px;
+button {
+    width: 100%;
+    padding: 10px;
     background-color: #5e8dc9;
     border: none;
-    color: white;
-    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
     cursor: pointer;
-    width: 100%;
 }
 
-form button:hover {
-    background-color: #3e6c9f;
+button:hover {
+    background-color: #4d7fa7;
+}
+
+.admin-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+#baixar-lista {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #5e8dc9;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#baixar-lista:hover {
+    background-color: #4d7fa7;
 }
